@@ -41,6 +41,16 @@ class Product(BaseModel):
 # Add your own schemas here:
 # --------------------------------------------------
 
+class CountryRating(BaseModel):
+    """
+    Country ratings submitted by users
+    Collection name: "countryrating"
+    """
+    country_slug: str = Field(..., description="Kebab-case country slug, e.g., united-states")
+    rating: float = Field(..., ge=0, le=5, description="Rating between 0 and 5")
+    user_id: Optional[str] = Field(None, description="Optional user identifier")
+    comment: Optional[str] = Field(None, description="Optional comment")
+
 # Note: The Flames database viewer will automatically:
 # 1. Read these schemas from GET /schema endpoint
 # 2. Use them for document validation when creating/editing
